@@ -44,8 +44,21 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd /home/myproject
-            git pull origin main
+            # 设置项目路径
+            PROJECT_DIR=/home/vue/myproject
+            # 如果项目目录不存在就创建
+            if [ ! -d "$PROJECT_DIR" ]; then
+              mkdir -p $PROJECT_DIR
+            fi
+
+            cd $PROJECT_DIR
+
+            # 如果目录不是 Git 仓库，说明是首次部署，自动 clone
+            if [ ! -d ".git" ]; then
+              git clone https://github.com/micheal-du/vite-project.git
+            else
+              git pull origin main
+            fi
             npm install
             npm run build
 
