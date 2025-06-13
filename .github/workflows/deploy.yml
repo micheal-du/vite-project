@@ -46,9 +46,15 @@ jobs:
           script: |
             # 设置项目路径
             PROJECT_DIR=/home/myproject
+            # 设置构建目录
+            PUBLIC_DIR=/home/project
             # 如果项目目录不存在就创建
             if [ ! -d "$PROJECT_DIR" ]; then
               mkdir -p $PROJECT_DIR
+            fi
+            # 如果构建目录不存在就创建
+            if [ ! -d "$PROJECT_DIR" ]; then
+              mkdir -p $PUBLIC_DIR
             fi
             cd $PROJECT_DIR
 
@@ -60,5 +66,5 @@ jobs:
             fi
             npm install
             npm run build
-            cp -r dist/* $PROJECT_DIR
+            cp -r dist/* $PUBLIC_DIR
 
