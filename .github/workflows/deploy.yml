@@ -45,7 +45,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             # 设置项目路径
-            PROJECT_DIR=/home/vue/myproject
+            PROJECT_DIR=/home/myproject
             # 如果项目目录不存在就创建
             if [ ! -d "$PROJECT_DIR" ]; then
               mkdir -p $PROJECT_DIR
