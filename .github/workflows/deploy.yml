@@ -46,25 +46,32 @@ jobs:
           script: |
             # 设置项目路径
             PROJECT_DIR=/home/myproject
-            # 设置构建目录
+            # 设置构建产物部署路径（Nginx root 对应）
             PUBLIC_DIR=/home/project
-            # 如果项目目录不存在就创建
-            if [ ! -d "$PROJECT_DIR" ]; then
-              mkdir -p $PROJECT_DIR
-            fi
-            # 如果构建目录不存在就创建
-            if [ ! -d "$PROJECT_DIR" ]; then
-              mkdir -p $PUBLIC_DIR
-            fi
-            cd $PROJECT_DIR
 
-            # 如果目录不是 Git 仓库，说明是首次部署，自动 clone
-            if [ ! -d ".git" ]; then
-              git clone https://github.com/micheal-du/vite-project.git .
-            else
+            # 创建目录（如不存在）
+            [ ! -d "$PROJECT_DIR" ] && mkdir -p "$PROJECT_DIR"
+            [ ! -d "$PUBLIC_DIR" ] && mkdir -p "$PUBLIC_DIR"
+
+            # 进入项目目录
+            cd "$PROJECT_DIR"
+
+            # 如果是 Git 仓库就 pull
+            if [ -d ".git" ]; then
+              echo "[INFO] Git repo exists, pulling latest code..."
               git pull origin main
+            else
+              # 不是 Git 仓库？先清空再 clone！
+              echo "[INFO] Not a Git repo. Resetting and cloning..."
+              rm -rf "$PROJECT_DIR"/*
+              git clone https://github.com/micheal-du/vite-project.git "$PROJECT_DIR"
             fi
+
+            # 安装依赖并构建
             npm install
             npm run build
-            cp -r dist/* $PUBLIC_DIR
+
+            # 拷贝到 Nginx 部署目录
+            cp -r dist/* "$PUBLIC_DIR"
+
 
