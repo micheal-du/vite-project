@@ -23,14 +23,6 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver()],
       dts: "src/components.d.ts",
-      // 指定组件所在位置，默认是 src/components
-      dirs: ['src/components'],
-      // 组件的有效文件扩展名
-      extensions: ['vue'],
-      // 配置文件生成位置
-      dts: 'src/components.d.ts',
-      // 自动导入指令
-      directives: true,
     }),
   ],
   server: {
@@ -47,10 +39,16 @@ export default defineConfig({
     rollupOptions: {
       output: {
         // 分包策略
-        manualChunks: {
-          "element-plus": ["element-plus"],
-          // 将 Vue 全家桶相关依赖打包在一起
-          "vue-vendor": ["vue", "vue-router", "pinia"],
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('element-plus')) {
+              return 'element-plus';
+            }
+            if (id.includes('vue') || id.includes('pinia') || id.includes('vue-router')) {
+              return 'vue-vendor';
+            }
+            return 'vendor';
+          }
         },
       },
     },
