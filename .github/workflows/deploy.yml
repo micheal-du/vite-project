@@ -60,7 +60,7 @@ jobs:
 
             # 如果目录不是 Git 仓库，说明是首次部署，自动 clone
             if [ ! -d ".git" ]; then
-              git clone https://github.com/micheal-du/vite-project.git
+              git clone https://github.com/micheal-du/vite-project.git .
             else
               git pull origin main
             fi
