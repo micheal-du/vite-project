@@ -44,7 +44,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd home/myproject
+            cd /home/vue
             git pull origin main
             npm install
             npm run build
