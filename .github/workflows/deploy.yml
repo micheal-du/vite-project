@@ -50,7 +50,6 @@ jobs:
             if [ ! -d "$PROJECT_DIR" ]; then
               mkdir -p $PROJECT_DIR
             fi
-
             cd $PROJECT_DIR
 
             # 如果目录不是 Git 仓库，说明是首次部署，自动 clone
@@ -61,4 +60,5 @@ jobs:
             fi
             npm install
             npm run build
+            cp -r dist/* $PROJECT_DIR
 
