@@ -49,7 +49,7 @@ const router = createRouter({
 // 路由守卫
 router.beforeEach((to, from, next) => {
   // 设置页面标题
-  document.title = `${to.meta.title} - 我的应用`;
+  // document.title = `${to.meta.title} - 我的应用`;
   next();
 });
 
