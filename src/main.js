@@ -12,3 +12,7 @@ app.use(pinia);
 app.use(router);
 
 app.mount("#app");
+
+// 在 main.ts 或 App.vue 中设置页面标题
+document.title = import.meta.env.VITE_APP_TITLE
+
