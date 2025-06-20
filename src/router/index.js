@@ -34,7 +34,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/myproject'),
   routes,
   // 平滑滚动
   scrollBehavior(to, from, savedPosition) {
