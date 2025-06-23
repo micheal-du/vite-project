@@ -11,8 +11,10 @@ jobs:
     runs-on: ubuntu-latest  # 选择运行环境为最新的 Ubuntu
 
     steps:
-      - name: Checkout code
+      - name: Checkout code and update submodules
         uses: actions/checkout@v4  # 第一步：检出代码到 runner
+        with:
+          submodules: 'true'  # 自动更新子模块
 
       - name: Set up Node.js
         uses: actions/setup-node@v4  # 第二步：设置 Node.js 环境
@@ -28,6 +30,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
+        echo "开始安装依赖"
         run: npm i  # 第三步：安装依赖
 
       - name: Build project
