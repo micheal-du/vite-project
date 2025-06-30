@@ -1,3 +1,0 @@
-[submodule ".github"]
-	path = .github
-	url = git@github.com:micheal-du/git-workflow-kit.git
