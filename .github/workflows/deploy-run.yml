@@ -1,4 +1,4 @@
-name: Deploy Static Site via Reusable Workflow
+name: "Deploy Static Site via Reusable Workflow"
 
 on:
   workflow_dispatch:
