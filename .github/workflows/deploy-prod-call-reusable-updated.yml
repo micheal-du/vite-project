@@ -1,4 +1,4 @@
-name: Deploy Static Site to Production
+name: Deploy Static Site to Production With Symlink
 
 on:
   workflow_dispatch:
