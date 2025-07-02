@@ -5,11 +5,11 @@ on:
 
 jobs:
   deploy:
-    uses: micheal-du/git-workflow-kit/.github/workflows/reusable-deploy-with-symlink.yml@main
+    uses: micheal-du/git-workflow-kit/.github/workflows/reusable-deploy-with-symlink.yml@master
     with:
       build_command: npm run build:prod
-      deploy_base: /opt/myproject
+      deploy_base: /home/myproject
     secrets:
-      SERVER_IP: ${{ secrets.SERVER_IP }}
-      SERVER_USER: ${{ secrets.SERVER_USER }}
-      SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+      SERVER_IP: ${{ secrets.PROD_SERVER_IP }}
+      SERVER_USER: ${{ secrets.PROD_SERVER_USER }}
+      SERVER_SSH_KEY: ${{ secrets.PROD_SERVER_SSH_KEY }}
