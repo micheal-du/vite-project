@@ -1,14 +1,14 @@
-name: "Deploy Static Site via Reusable Workflow"
+name: Deploy Static Site to Production
 
 on:
   workflow_dispatch:
 
 jobs:
   deploy:
-    uses: micheal-du/git-workflow-kit/.github/workflows/deploy-test.yml@master
+    uses: micheal-du/git-workflow-kit/.github/workflows/reusable-deploy-prod.yml@master
     with:
-      build_command: npm run build:test
-      target_path: /home/projectA
+      build_command: npm run build:prod
+      target_path: /home/your-project-prod
     secrets:
       SERVER_IP: ${{ secrets.PROD_SERVER_IP }}
       SERVER_USER: ${{ secrets.PROD_SERVER_USER }}
