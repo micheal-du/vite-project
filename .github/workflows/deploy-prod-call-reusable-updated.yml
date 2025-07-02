@@ -8,7 +8,7 @@ jobs:
     uses: micheal-du/git-workflow-kit/.github/workflows/reusable-deploy-with-symlink.yml@master
     with:
       build_command: npm run build:prod
-      deploy_base: /home/myproject
+      deploy_base: $HOME/myproject
     secrets:
       SERVER_IP: ${{ secrets.PROD_SERVER_IP }}
       SERVER_USER: ${{ secrets.PROD_SERVER_USER }}
